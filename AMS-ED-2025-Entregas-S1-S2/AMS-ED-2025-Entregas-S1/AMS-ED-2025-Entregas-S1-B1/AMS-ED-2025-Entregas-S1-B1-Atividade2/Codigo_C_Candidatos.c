@@ -1,11 +1,12 @@
-/******************************************************************************
+/*----------------------------------------------------------------------------------*/
+/*   FATEC-São Caetano do Sul                 Estrutura de Dados                    */
+/*                         Id da Atividade: Atividade B1-2                          */
+/*             Objetivo: Programa de  seleção para RESIDÊNCIA MÉDICA                */
+/*                                                                                  */
+/*                                  Autor: Isabella Monsalles Barbosa               */
+/*                                                                   Data:07/03/2025*/
+/*----------------------------------------------------------------------------------*/
 
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
-
-*******************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
