@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------------------*/
 /*   FATEC-São Caetano do Sul                 Estrutura de Dados                    */
 /*                         Id da Atividade: Atividade B1-3                          */
-/*             Objetivo: Sistema de Comanda                                         */
+/*             Objetivo: Sistema de Restaurante                                     */
 /*                                                                                  */
 /*                                  Autor: Isabella Monsalles Barbosa               */
 /*                                                                   Data:23/03/2025*/
