@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#define MAX 100
+#define MAX 4
 
 typedef struct {
     double itens[MAX];
