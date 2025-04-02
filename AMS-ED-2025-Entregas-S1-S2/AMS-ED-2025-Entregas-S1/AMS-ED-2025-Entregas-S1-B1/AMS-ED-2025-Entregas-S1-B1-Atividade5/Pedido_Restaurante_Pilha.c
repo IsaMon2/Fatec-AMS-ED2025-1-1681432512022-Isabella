@@ -1,16 +1,17 @@
 /*----------------------------------------------------------------------------------*/
-/*   FATEC-São Caetano do Sul                 Estrutura de Dados                    */
+/*   FATEC-São Caetano do Sul              Estrutura de Dados                       */
 /*                         Id da Atividade: Atividade B1-5                          */
-/*      Objetivo: Sistema de Gerenciamento de Pedidos para um Restaurante com pilha */
+/*          Objetivo: Programa de Restaurante - transformando lista ligada em pilha */
 /*                                                                                  */
-/*                                  Autor: Isabella Monsalles Barbosa               */
-/*                                                                   Data:01/04/2025*/
+/*                                  Autoras: Isabella Monsalles Barbosa             */
+/*                                           Milena Miwa Sawada                     */
+/*                                                                   Data:02/04/2025*/
 /*----------------------------------------------------------------------------------*/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+ 
 typedef struct Comanda {
     int NumeroPedido;
     char NomeCliente[100];
@@ -18,13 +19,13 @@ typedef struct Comanda {
     int Quantidade;
     char StatusPedido[50];
 } Comanda;
-
+ 
 typedef struct Pilha {
     Comanda *dados; 
     int topo;       
     int capacidade; 
 } Pilha;
-
+ 
 Pilha* criarPilha(int capacidade) {
     Pilha *pilha = (Pilha *)malloc(sizeof(Pilha));
     pilha->capacidade = capacidade;
@@ -32,15 +33,15 @@ Pilha* criarPilha(int capacidade) {
     pilha->dados = (Comanda *)malloc(capacidade * sizeof(Comanda));
     return pilha;
 }
-
+ 
 int pilhaCheia(Pilha *pilha) {
     return pilha->topo == pilha->capacidade - 1;
 }
-
+ 
 int pilhaVazia(Pilha *pilha) {
     return pilha->topo == -1;
 }
-
+ 
 void push(Pilha *pilha, Comanda pedido) {
     if (pilhaCheia(pilha)) {
         printf("Pilha cheia! Não é possível inserir mais pedidos.\n");
@@ -49,7 +50,7 @@ void push(Pilha *pilha, Comanda pedido) {
     pilha->dados[++pilha->topo] = pedido;
     printf("\nPedido inserido na pilha!\n");
 }
-
+ 
 Comanda pop(Pilha *pilha) {
     if (pilhaVazia(pilha)) {
         printf("Pilha vazia! Não há pedidos para remover.\n");
@@ -58,7 +59,7 @@ Comanda pop(Pilha *pilha) {
     }
     return pilha->dados[pilha->topo--];
 }
-
+ 
 Comanda topo(Pilha *pilha) {
     if (pilhaVazia(pilha)) {
         printf("Pilha vazia! Não há pedidos no topo.\n");
@@ -67,7 +68,7 @@ Comanda topo(Pilha *pilha) {
     }
     return pilha->dados[pilha->topo];
 }
-
+ 
 void alterarStatus(Pilha *pilha, int NumeroPedido, const char *StatusNovo) {
     for (int i = 0; i <= pilha->topo; i++) {
         if (pilha->dados[i].NumeroPedido == NumeroPedido) {
@@ -78,7 +79,7 @@ void alterarStatus(Pilha *pilha, int NumeroPedido, const char *StatusNovo) {
     }
     printf("\nPedido não encontrado na pilha.\n");
 }
-
+ 
 void imprimirPedido(Comanda pedido) {
     printf("Pedido #%d\n", pedido.NumeroPedido);
     printf("Cliente: %s\n", pedido.NomeCliente);
@@ -86,22 +87,22 @@ void imprimirPedido(Comanda pedido) {
     printf("Quantidade: %d\n", pedido.Quantidade);
     printf("Status: %s\n", pedido.StatusPedido);
 }
-
+ 
 void liberarPilha(Pilha *pilha) {
     free(pilha->dados);
     free(pilha);
 }
-
+ 
 int main() {
-    Pilha *pilha = criarPilha(10);  
-
+    Pilha *pilha = criarPilha(10); 
+ 
     int numPed;
     char nome_cliente[100];
     char desc_prato[100];
     int qtde;
     char status[10];
     int opcao = 6;
-
+ 
     while (opcao != 0) {
         printf("\nRESTAURANTE:\n\n");
         printf("1 - Inserir pedido\n");
@@ -111,7 +112,7 @@ int main() {
         printf("0 - Sair\n");
         printf("\nDigite uma opção: ");
         scanf("%d", &opcao);
-
+ 
         switch (opcao) {
         case 1:
             printf("\nInserir Pedido\n\n");
@@ -128,7 +129,7 @@ int main() {
             printf("Status do pedido (1- Pendente, 2- Em preparo, 3- Pronto, 4- Entregue): ");
             scanf("%s[^\n]", status);
             getchar();
-
+ 
             Comanda novoPedido = {numPed, "", "", qtde, ""};
             strcpy(novoPedido.NomeCliente, nome_cliente);
             strcpy(novoPedido.DescricaoPrato, desc_prato);
@@ -143,7 +144,7 @@ int main() {
             } else {
                 strcpy(novoPedido.StatusPedido, "Desconhecido");
             }
-
+ 
             push(pilha, novoPedido);
             break;
         case 2:
@@ -157,7 +158,7 @@ int main() {
         case 3:
             printf("\nRemover Pedido (desfazer)\n\n");
             Comanda pedidoRemovido = pop(pilha);
-            if (pedidoRemovido.NumeroPedido != 0) {  
+            if (pedidoRemovido.NumeroPedido != 0) { 
                 printf("Pedido #%d removido da pilha.\n", pedidoRemovido.NumeroPedido);
             }
             break;
@@ -176,6 +177,6 @@ int main() {
             printf("Opção inválida!\n");
         }
     }
-
+ 
     return 0;
 }
